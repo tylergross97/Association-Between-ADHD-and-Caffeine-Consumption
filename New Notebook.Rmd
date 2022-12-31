@@ -1,0 +1,403 @@
+---
+title: "Caffeine and ADHD Meta-Analysis Effect Sizes"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+# Load Package
+```{r}
+library(esc)
+```
+
+```{r}
+esc_beta(beta = 0.13,   # standardized regression coefficient
+         sdy = 1.35,       # standard deviation of predicted variable y
+         grp1n = 256,    # sample size of the first group
+         grp2n = 1572,    # sample size of the second group
+         es.type = "r",
+         study = 'A gender-specific analysis of adolescent dietary caffeine, alcohol consumption, anger, and violent behavior') # males
+```
+```{r}
+esc_beta(beta = 0.18,   # standardized regression coefficient
+         sdy = 0.74,       # standard deviation of predicted variable y
+         grp1n = 166,    # sample size of the first group
+         grp2n = 1676,    # sample size of the second group
+         es.type = "r",
+         study = 'A gender-specific analysis of adolescent dietary caffeine, alcohol consumption, anger, and violent behavior') # females
+```
+```{r}
+esc_chisq(p = .004, # p value
+          totaln = 1649, # total sample size
+          es.type = "r",
+          study = 'Energy drinks and youth self-reported hyperactivity/inattention symptoms') 
+```
+```{r}
+esc_chisq(chisq = .167,   # chi square value
+          p = .197,   # p value
+          totaln = 72,  # total sample size
+          es.type = "r",
+          study = 'Energy Drink Use in Adolescents With and Without ADHD: Trends and Influences') # children
+```
+```{r}
+esc_chisq(chisq = .058,  # chi square value
+          p = .809, # p value
+          totaln = 69, # total sample size
+          es.type = "r",
+          study = 'Energy Drink Use in Adolescents With and Without ADHD: Trends and Influences') # parents
+```
+```{r}
+esc_chisq(chisq = 142.27, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # energy drinks
+```
+```{r}
+esc_chisq(chisq = 53.81, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # other caffeinated drinks
+```
+```{r}
+esc_chisq(chisq = 164.63, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # caffeine pills
+```
+```{r}
+esc_chisq(chisq = 0.942, # chi square value
+          p = .8015, # p value
+          totaln = 2259, # total sample size
+          es.type = "r",
+          study = 'Self-Medication of ADHD Symptoms: Does Caffeine Have a Role?')
+```
+```{r}
+esc_chisq(chisq = 4.92, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # morning
+```
+```{r}
+esc_chisq(chisq = 14.94, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # afternoon
+```
+```{r}
+esc_chisq(chisq = 7.81, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # evening
+```
+```{r}
+esc_t(p = .003, # p value
+      totaln = 120, # total sample size
+      es.type = "r", # convert to correlation
+      study = 'The Mediterranean Diet and ADHD in Children and Adolescents') 
+```
+```{r}
+esc_t(p = .0006, # p value
+      totaln = 200, # total sample size
+      es.type = "r", # convert to correlation
+      study = 'Nutrient intake, dietary patterns, and anthropometric variables of children with ADHD in comparison to healthy controls: a case-control study') 
+```
+```{r}
+esc_f(f = 7.03,
+      grp1n = 92,
+      grp2n = 419,
+      es.type = 'r',
+      study = 'The Relationships between Addiction to Highly Caffeinated Drinks, Burnout, and Attention-Deficit/ Hyperactivity Disorder')
+```
+```{r}
+convert_r2z(.28) #'A comparison of the associations of caffeine and cigarette use with depressive and ADHD symptoms in a sample of young adult smokers'
+```
+
+```{r}
+esc_f(f = 7.03,
+      totaln = 132,
+      es.type = 'r',
+      study = 'Caffeine use: association with nicotine use, aggression, and other psychopathology in psychiatric and pediatric outpatient adolescents')
+```
+
+```{r}
+esc_t(t = 3.3790, # t value
+      totaln = 5478, # total sample size
+      es.type = "r",
+      study = 'Energy drink consumption, substance use and attention-deficit/hyperactivity disorder among adolescents') 
+```
+
+```{r}
+esc_t(p = 0.021, # p value
+      totaln = 126, # total sample size
+      es.type = "r",
+      study = 'Impact of ADHD symptoms on clinical and cognitive aspects of problem gambling') 
+```
+
+```{r}
+esc_chisq(chisq = 20.93, # chi square value
+          totaln = 448, # total sample size
+          es.type = "r",
+          study = 'Adolescent Caffeine Use, ADHD, and Cigarette Smoking')
+```
+
+## combine effect sizes into one dataframe
+### make lists
+```{r}
+## e1
+  e1 = esc_beta(beta = 0.13,   # standardized regression coefficient
+         sdy = 1.35,       # standard deviation of predicted variable y
+         grp1n = 256,    # sample size of the first group
+         grp2n = 1572,    # sample size of the second group
+         es.type = "r",
+         study = 'A gender-specific analysis of adolescent dietary caffeine, alcohol consumption, anger, and violent behavior') # males
+## e2
+  e2 = esc_beta(beta = 0.18,   # standardized regression coefficient
+         sdy = 0.74,       # standard deviation of predicted variable y
+         grp1n = 166,    # sample size of the first group
+         grp2n = 1676,    # sample size of the second group
+         es.type = "r",
+         study = 'A gender-specific analysis of adolescent dietary caffeine, alcohol consumption, anger, and violent behavior') # females
+## e3                
+  e3 = esc_chisq(p = .004, # p value
+          totaln = 1649, # total sample size
+          es.type = "r",
+          study = 'Energy drinks and youth self-reported hyperactivity/inattention symptoms') 
+## e4
+  e4 = esc_chisq(chisq = .167,   # chi square value
+          p = .197,   # p value
+          totaln = 72,  # total sample size
+          es.type = "r",
+          study = 'Energy Drink Use in Adolescents With and Without ADHD: Trends and Influences') # children
+## e5
+  e5 = esc_chisq(chisq = .058,  # chi square value
+          p = .809, # p value
+          totaln = 69, # total sample size
+          es.type = "r",
+          study = 'Energy Drink Use in Adolescents With and Without ADHD: Trends and Influences') # parents
+## e6
+  e6 = esc_chisq(chisq = 142.27, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # energy drinks
+## e7
+  e7 = esc_chisq(chisq = 53.81, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # other caffeinated drinks
+  e8 = esc_chisq(chisq = 164.63, # chi square value
+          totaln = 18913, # total sample size
+          es.type = "r",
+          study = 'Exploring the Role of Caffeine Use in Adult-ADHD Symptom Severity of US Army Soldiers') # caffeine pills
+  e9 = esc_chisq(chisq = 0.942, # chi square value
+          p = .8015, # p value
+          totaln = 2259, # total sample size
+          es.type = "r",
+          study = 'Self-Medication of ADHD Symptoms: Does Caffeine Have a Role?')
+  e10 = esc_chisq(chisq = 4.92, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # morning
+  e11 = esc_chisq(chisq = 14.94, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # afternoon
+  e12 = esc_chisq(chisq = 7.81, # chi square value
+          totaln = 302, # total sample size
+          es.type = "r",
+          study = 'Caffeine Use and Associations With Sleep in Adolescents With and Without ADHD') # evening
+  e13 = esc_t(p = .003, # p value
+      totaln = 120, # total sample size
+      es.type = "r", # convert to correlation
+      study = 'The Mediterranean Diet and ADHD in Children and Adolescents') 
+  e14 = esc_t(p = .0006, # p value
+      totaln = 200, # total sample size
+      es.type = "r", # convert to correlation
+      study = 'Nutrient intake, dietary patterns, and anthropometric variables of children with ADHD in comparison to healthy controls: a case-control study') 
+  e15 = esc_f(f = 7.03,
+      grp1n = 92,
+      grp2n = 419,
+      es.type = 'r',
+      study = 'The Relationships between Addiction to Highly Caffeinated Drinks, Burnout, and Attention-Deficit/ Hyperactivity Disorder')
+  e16 = convert_r2z(.28) #'A comparison of the associations of caffeine and cigarette use with depressive and ADHD symptoms in a sample of young adult smokers'
+  e17 = esc_f(f = 7.03,
+      totaln = 132,
+      es.type = 'r',
+      study = 'Caffeine use: association with nicotine use, aggression, and other psychopathology in psychiatric and pediatric outpatient adolescents')
+  e18 = esc_t(t = 3.3790, # t value
+      totaln = 5478, # total sample size
+      es.type = "r",
+      study = 'Energy drink consumption, substance use and attention-deficit/hyperactivity disorder among adolescents') 
+  e19 = esc_t(p = 0.021, # p value
+      totaln = 126, # total sample size
+      es.type = "r",
+      study = 'Impact of ADHD symptoms on clinical and cognitive aspects of problem gambling') 
+  e20 = esc_chisq(chisq = 20.93, # chi square value
+          totaln = 448, # total sample size
+          es.type = "r",
+          study = 'Adolescent Caffeine Use, ADHD, and Cigarette Smoking')
+  
+```
+### make dataframe
+```{r}
+### SCROLL TO THE RIGHT TO VIEW STATS
+new_es_df = combine_esc(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e17, e18, e19, e20)
+new_es_df
+```
+
+# Analysis
+
+install packages
+```{r}
+library(robumeta)
+library(metafor)
+library(dplyr)
+```
+
+convert r to zcor
+```{r}
+new_efz = escalc(measure = "ZCOR", ri=es, ni=sample.size,
+             data=new_es_df)
+                    
+```
+append column with author names
+```{r}
+
+new_efz['authors'] = c('James et al.','James et al.','Schwartz et al.','Narine et al.','Narine et al.','Cipollone et al.','Cipollone et al.','Cipollone et al.','Agoston et al.','Cusick et al.','Cusick et al.','Cusick et al.','Rios-Hernandez et al.','Salvat et al.','Bae et al.','Martin et al.','Galimov','Chamberlain et al.','Walker et al.')
+```
+append columns with dummy variables for moderation analysis
+```{r}
+new_efz['child_adolescent']=c(1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1)
+new_efz['total_caffeine']=c(0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,1)
+new_efz['energy_drinks']=c(1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,0,0)
+new_efz['coffee']=c(1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1)
+new_efz['US']=c(0,0,1,1,1,1,1,1,0,1,1,1,0,0,0,1,0,1,1)
+```
+convert columns to numeric
+```{r}
+new_efz[, c(1:14)] <- sapply(new_efz[, c(1:14)], as.numeric)
+```
+
+## perform meta analysis
+```{r}
+new_res = rma(yi, vi, data=new_efz)
+new_res
+predict(new_res, digits=3, transf=transf.ztor)
+confint(new_res)
+new_res
+```
+The random-effects model gave a significant pooled Fisher's Z effect size of 0.1198 with a p-value of <.0001. These results show a positive and significant association between ADHD symptoms and energy drink consumption.
+An I^2 value of 91.38% indicates a large amount of heterogeneity between studies.
+A Q-value of 89.6 and a p-value of <0.0001 indicates a significant level of heterogeneity between studies.
+
+### run influence test to see if there were any studies that were particularly influential - if reuslts hang on a particular study (dot is red), that means that study had a significant influence
+```{r}
+inf = influence(new_res)
+print(inf)
+plot(inf)
+```
+No studies were plotted in red. This indicates that no studies had a significant influence.
+
+### make a forest plot to visualize the results
+```{r}
+forest(x = new_res, header=TRUE, slab = c('James et al.','James et al.','Schwartz et al.','Narine et al.','Narine et al.','Cipollone et al.','Cipollone et al.','Cipollone et al.','Agoston et al.','Cusick et al.','Cusick et al.','Cusick et al.','Rios-Hernandez et al.','Salvat et al.','Bae et al.','Martin et al.','Galimov','Chamberlain et al.','Walker et al.'), xlab = 'Effect Size',psize = 1)
+forest
+```
+
+### make a funnel plot to small study bias - assessing funnel plot asymmetry
+```{r}
+estimate = 0.1222
+se = 0.0170
+
+#Store a vector of values that spans the range from 0
+#to the max value of impression (standard error) in your dataset.
+#Make the increment (the final value) small enough (I choose 0.001)
+#to ensure your whole range of data is captured
+se.seq=seq(0, max(new_efz$se), 0.001)
+
+#Compute vectors of the lower-limit and upper limit values for
+#the 95% CI region
+ll95 = estimate-(1.96*se.seq)
+ul95 = estimate+(1.96*se.seq)
+
+#Do this for a 99% CI region too
+ll99 = estimate-(3.29*se.seq)
+ul99 = estimate+(3.29*se.seq)
+
+#And finally, calculate the confidence interval for your meta-analytic estimate 
+meanll95 = estimate-(1.96*se)
+meanul95 = estimate+(1.96*se)
+
+#Put all calculated values into one data frame
+#You might get a warning about '...row names were found from a short variable...' 
+#You can ignore it.
+dfCI = data.frame(ll95, ul95, ll99, ul99, se.seq, estimate, meanll95, meanul95)
+
+
+#Draw Plot
+fp = ggplot(aes(x = se, y = yi), data = new_efz) +
+    geom_point(shape = 1) +
+    xlab('Standard Error') + ylab('Effect Size')+
+    geom_line(aes(x = se.seq, y = ll95), linetype = 'dotted', data = dfCI) +
+    geom_line(aes(x = se.seq, y = ul95), linetype = 'dotted', data = dfCI) +
+    geom_line(aes(x = se.seq, y = ll99), linetype = 'dashed', data = dfCI) +
+    geom_line(aes(x = se.seq, y = ul99), linetype = 'dashed', data = dfCI) +
+    geom_segment(aes(x = min(se.seq), y = meanll95, xend = max(se.seq), yend = meanll95), linetype='dotted', data=dfCI) +
+    geom_segment(aes(x = min(se.seq), y = meanul95, xend = max(se.seq), yend = meanul95), linetype='dotted', data=dfCI) +
+    scale_x_reverse()+
+    scale_y_continuous(breaks=seq(-1.25,2,0.25))+
+    coord_flip()+
+    theme_bw()
+fp
+```
+### run an Eggert's Regression test (regtest) - a formal test to assess publication bias
+```{r}
+regtest(new_res)
+```
+
+The p-value is 0.0013. This indicates a significant small study bias.
+
+## Run a moderation analysis using res.modq
+
+### look at child or adolescent (age) dummy variable to see if it has a moderating effect
+```{r}
+new_res.modage = rma(yi, vi, mods = ~ child_adolescent, data=new_efz)
+new_res.modage
+```
+ A p-value of 0.0365 indicates that including age as a moderator had a significant effect on the model.
+```{r}
+new_res.mod_total_caffeine = rma(yi, vi, mods = ~ total_caffeine, data=new_efz)
+new_res.mod_total_caffeine
+```
+A p-value of 0.0875 indicates that whether a study measured total caffeine consumption or not did not significantly moderate the model.
+```{r}
+new_res.mod_energy_drinks = rma(yi, vi, mods = ~ energy_drinks, data=new_efz)
+new_res.mod_energy_drinks
+```
+```{r}
+new_res.mod_coffee = rma(yi, vi, mods = ~ coffee, data=new_efz)
+new_res.mod_coffee
+```
+
+```{r}
+new_res.modUS = rma(yi, vi, mods = ~ US, data=new_efz)
+new_res.modUS
+```
+ 
+ 
+## use robust variance estimation - accounting for effect size dependencies (because there were two studies that reported two seperate effect sizes)
+```{r}
+mes_ss = robu(formula = yi ~ 1, data = new_efz, studynum = authors,
+              var.eff.size = vi, small = TRUE)
+mes_ss
+```
+
+After accounting for effect size dependencies, the effect size remained statistically significant (p-value 0.000426).
+
+## Directly assessing publication bias using weightr
+This selection model increases the weight of studies that are less likely to be published while decreases the weight of studies that are more likely to be published (based on publication bias of p-value)
+```{r}
+library(weightr)
+wf = weightfunct(new_efz$yi, new_efz$vi, table = TRUE)
+wf
+```
+
+Accounting for publication bias decreases our effect size estimate from .1222 to .07563. The chi-square test with a p-value of 0.00069859 indicates a significant publication bias.
